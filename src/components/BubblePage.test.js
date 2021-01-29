@@ -2,14 +2,14 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import BubblePage from "./BubblePage";
 
-test("Renders BubblePage without errors", () => {
-  // Finish this test
-});
+test("Fetches data and renders the bubbles", async () => {
+  localStorage.setItem("token", "ahuBHejkJJiMDhmODZhZi0zaeLTQ4ZfeaseOGZgesai1jZWYgrTA07i73Gebhu98");
 
-test("Fetches data and renders the bubbles on mounting", () => {
-  // Finish this test
-});
+  render(<BubblePage />)
 
-//Task List
-//1. Setup test for basic rendering of component
-//2. Setup test for initial rendering of bubbles on loading
+  const color = await screen.findByText("aliceblue");
+  // since there's no way for the RTL to target objects with no text or role, this targets the ColorList instead of the bubbles proper,
+  // but that's enough to be sure that we're fetching information from the API and rendering it
+
+  expect(color).toBeVisible();
+});
